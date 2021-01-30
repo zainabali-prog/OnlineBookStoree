@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+
+{% block content%}
+
+
+    <div class="contactbg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contacttitlepage">
+                        <h2>Book list</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-6 offset-md-3">
+                <div class="address">
+
+                  
+                  {% if book_list %}
+                  <ul>
+                    {% for book in book_list %}
+                      {% for product in book.product_set.all %}
+                      <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                      <h4 style="display: inline-block; float: right"><strong>Rs. {{ product.price }}</strong></h4> 
+                    {% endfor %}
+                      <li>
+                        <div class="container">
+                          <div class="row">
+                              <div class=" col-md-6 offset-md-3">
+                                  <div class="address">
+                        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+                        
+                        
+                      </div>
+                    </div>
+                </div>
+            </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                  {% else %}
+                    <p>There are no books in the library.</p>
+                  {% endif %}
+                  
+                      
+                  
+                    
+              
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+    
+
+
+

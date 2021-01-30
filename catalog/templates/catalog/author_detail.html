@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+
+{% block content%}
+
+
+    <div class="contactbg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contacttitlepage">
+                        <h2>Author Details</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-6 offset-md-3">
+                <div class="address">
+
+                  
+                  <h1>Author's name: {{ author.first_name}} {{ author.last_name}}</h1>
+                  <p><strong>Bio Data::</strong> {{ author.bio_data }}</p>
+                  
+                
+                  <div style="margin-left:20px;margin-top:20px">
+                    <h4>Books by author</h4>
+
+                    {% for copy in author.book_set.all %}
+                      <hr>
+                      
+                      <p><strong>Title:</strong> {{ copy.title }}</p>
+                      
+                    {% endfor %}
+                  </div>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+    
+
+
+

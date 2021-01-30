@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+
+{% block content%}
+
+
+    <div class="contactbg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contacttitlepage">
+                        <h2>Author list</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-6 offset-md-3">
+                <div class="address">
+
+                  
+                  {% if author_list %}
+                  <ul>
+                    {% for author in author_list %}
+                      <li>
+                        <a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                  {% else %}
+                    <p>There are no authors in the library.</p>
+                  {% endif %} 
+              
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+    
+
+
+
+
+
+
+
+
+

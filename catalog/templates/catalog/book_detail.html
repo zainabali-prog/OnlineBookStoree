@@ -1,0 +1,90 @@
+
+
+{% extends "base.html" %}
+
+{% block content%}
+
+
+    <div class="contactbg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contacttitlepage">
+                        <h2>Book Details</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-6 offset-md-3">
+                <div class="address">
+
+                  
+                  <h1>Title: {{ book.title }}</h1>
+
+                  <p><strong>Author:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p>
+                  <p><strong>Summary:</strong> {{ book.summary }}</p>
+                  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+                  
+
+                  <div style="margin-left:20px;margin-top:20px">
+                    
+
+                    {% for copy in book.bookinstance_set.all %}
+                      <hr>
+                      <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+                        {{ copy.get_status_display }}
+                      </p>
+                      {% if copy.status != 'a' %}
+                        <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
+                      {% endif %}
+                      <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
+                      <p class="text-muted"><strong>Id:</strong> {{ copy.book_id }}</p>
+                    {% endfor %}
+
+                    
+                    {% for c in book.genre_set.all %}
+                      <hr>
+
+                      <p><strong>Genre:</strong> {{ c.name }}</p>
+                    
+                    {% endfor %}
+
+                    {% for d in book.category_set.all %}
+                      <hr>
+
+                      <p><strong>Category:</strong> {{ d.name }}</p>
+                    
+                    {% endfor %}
+
+                    {% for e in book.ratings_set.all %}
+                      <hr>
+
+                      <p><strong>Rating:</strong> {{ e.name }}</p>
+                    
+                    {% endfor %}
+                    
+
+
+
+
+
+
+
+
+
+                  </div>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+    
+
+
+
